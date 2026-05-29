@@ -1,0 +1,210 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<main>
+    <!-- ================ start banner area ================= -->
+    <section class="blog-banner-area" id="contact">
+        <div class="container h-100">
+            <div class="blog-banner">
+                <div class="text-center">
+                    <h1>حساب کاربری - اطلاعات حساب من</h1>
+                    <nav aria-label="breadcrumb" class="banner-breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><strong>به صفحه حساب کاربری خود خوش آمدید</strong></li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ================ end banner area ================= -->
+
+    <!--================ Customer's profile tools start =================-->
+    {% if not user.is_staff %}
+    <section class="blog_categorie_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-lg-4 mb-4 mb-lg-0">
+                    <div class="categories_post">
+                        <a href="{% url 'orders_tracking' %}">
+                            <img class="card-img rounded-0" src="{% static 'img/profile.jpg' %}" alt="post">
+                            <div class="categories_details">
+                                <div class="categories_text">
+                                    <h5><strong>پیگیری سفارشات من</strong></h5>
+                                    <div class="border_line"></div>
+                                    <p><strong>مشاهده جزئیات تمام سفارشات ثبت شده</strong></p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-4 mb-4 mb-lg-0">
+                    <div class="categories_post">
+                        <a href="{% url 'show_deliveryinfo' %}">
+                            <img class="card-img rounded-0" src="{% static 'img/profile.jpg' %}" alt="post">
+                            <div class="categories_details">
+                                <div class="categories_text">
+                                    <h5><strong>مشخصات ارسال سفارش</strong></h5>
+                                    <div class="border_line"></div>
+                                    <p><strong>مشاهده / ویرایش مشخصات ارسال سفارش مانند آدرس و غیره</strong></p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-4 mb-4 mb-lg-0">
+                    <div class="categories_post">
+                        <a href="{% url 'acc_info' %}">
+                            <img class="card-img rounded-0" src="{% static 'img/profile.jpg' %}" alt="post">
+                            <div class="categories_details">
+                                <div class="categories_text">
+                                    <h5><strong>اطلاعات حساب من</strong></h5>
+                                    <div class="border_line"></div>
+                                    <p><strong>مشاهده / ویرایش اطلاعات حساب کاربری</strong></p>
+                                    <br>
+                                    <p class="text-success"><strong>|  شما اینجا هستید  |</strong></p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================ Customer's profile tools end =================-->
+    {% else %}
+    <!--================ Admin's profile tools start =================-->
+    <section class="blog_categorie_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-lg-8 mb-4 mb-lg-0">
+                    <div class="categories_post">
+                        <a href="{% url 'admin:index' %}">
+                            <img class="card-img rounded-0" src="{% static 'img/profilelarger.jpeg' %}" alt="post">
+                            <div class="categories_details">
+                                <div class="categories_text">
+                                    <h5><strong>ورود به پنل مدیریت داروخانه</strong></h5>
+                                    <div class="border_line"></div>
+                                    <p><strong>مشاهده / ویرایش اطلاعات ذخیره شده در سیستم داروخانه طبق میزان سطح دسترسی</strong></p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-4 mb-4 mb-lg-0">
+                    <div class="categories_post">
+                        <a href="{% url 'acc_info' %}">
+                            <img class="card-img rounded-0" src="{% static 'img/profile.jpg' %}" alt="post">
+                            <div class="categories_details">
+                                <div class="categories_text">
+                                    <h5><strong>اطلاعات حساب من</strong></h5>
+                                    <div class="border_line"></div>
+                                    <p><strong>مشاهده / ویرایش اطلاعات حساب کاربری</strong></p>
+                                    <p class="text-success"><strong>| شما اینجا هستید |</strong></p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================ Admin's profile tools end =================-->
+    {% endif %}
+    <!-- ================ Account's info start ================= -->
+    <section class="order_details section-margin--small">
+        <div class="container text-right">
+            <div class="order_details_table">
+                <h2><strong>اطلاعات حساب کاربری</strong></h2>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col"><a href="{% url 'update_acc_info' %}" class="btn btn-primary"><strong>ویرایش</strong></a></th>
+                                <th scope="col"><strong>{{ user.username }}</strong></th>
+                                <th scope="col"><strong>نام کاربری</strong></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <p><!----></p>
+                                </td>
+                                <td>
+                                    <h5><strong>{{ user.first_name }}</strong></h5>
+                                </td>
+                                <td>
+                                    <p><strong>نام</strong></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p><!----></p>
+                                </td>
+                                <td>
+                                    <h5><strong>{{ user.last_name }}</strong></h5>
+                                </td>
+                                <td>
+                                    <p><strong>نام خانوادگی</strong></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p><!----></p>
+                                </td>
+                                <td>
+                                    <h5><strong>{{ user.email }}</strong></h5>
+                                </td>
+                                <td>
+                                    <p><strong>آدرس ایمیل</strong></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h4><!----></h4>
+                                </td>
+                                <td>
+                                    <h5><strong>********</strong></h5>
+                                </td>
+                                <td>
+                                    <p><strong>رمز عبور</strong></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h4><!----></h4>
+                                </td>
+                                <td>
+                                    <h5><!----></h5>
+                                </td>
+                                <td>
+                                    <p><!----></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <!---->
+                                </td>
+                                <td>
+                                    {% if user.is_superuser %}
+                                    <h4><strong>مدیر</strong></h4>
+                                    {% elif user.is_staff %}
+                                    <h4><strong>ادمین</strong></h4>
+                                    {% else %}
+                                    <h4><strong>مشتری</strong></h4>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <h4><strong>سطح دسترسی</strong></h4>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ================ Account's info end ================= -->
+</main>
+{% endblock %}

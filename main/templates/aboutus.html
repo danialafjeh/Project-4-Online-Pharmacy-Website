@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main>
+	<!-- ================ start banner area ================= -->
+	<section class="blog-banner-area" id="contact">
+		<div class="container h-100">
+			<div class="blog-banner">
+				<div class="text-center">
+					<h1>درباره ما</h1>
+					<nav aria-label="breadcrumb" class="banner-breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><strong>هر آنچه که ضروری است درباره داروخانه دانیال بدانید</strong></li>
+            </ol>
+          </nav>
+				</div>
+			</div>
+    </div>
+	</section>
+	<!-- ================ end banner area ================= -->
+
+	<!-- ================ Aboutus section start ================= -->
+  <section class="section-margin--small" dir="rtl">
+    <div class="container text-center">
+      <div class="row">
+        <div class="col-md-4 col-lg-12 mb-4 mb-md-0">
+          <div class="media contact-info">
+            <div class="media-body text-right">
+              <h3><strong><span class="contact-info__icon"> <i class="ti-home"> </i> </span>معرفی :</strong></h3>
+              <hr style="border: none; height: 3px; background-color: blue;">
+              <p><strong>{{ information.about_pharmacy }}</strong></p>
+            </div>
+          </div>
+          <div class="media contact-info">
+            <div class="media-body text-right">
+              <h3><strong> <span class="contact-info__icon"><i class="ti-search"> </i> </span>آدرس داروخانه :</strong></h3>
+              <hr style="border: none; height: 3px; background-color: blue;">
+              <p><strong>{{ information.pharmacy_address }}</strong></p>
+            </div>
+          </div>
+          <div class="media contact-info">
+            <div class="media-body text-right">
+              <h3><strong> <span class="contact-info__icon"><i class="ti-headphone"> </i> </span>درباره دکتر {{ information.doctor_fullname }} :</strong></h3>
+              <hr style="border: none; height: 3px; background-color: blue;">
+              <p><strong>{{ information.doctor_info }}</strong></p>
+            </div>
+          </div>
+          <div class="media contact-info">
+            <div class="media-body text-right">
+              <h3><strong> <span class="contact-info__icon"><i class="ti-email"> </i> </span>راه های ارتباطی و پشتیبانی :</strong></h3>
+              <hr style="border: none; height: 3px; background-color: blue;">
+              <p><strong>1) {{ information.pharmacy_phone1 }}</strong></p>
+              <p><strong>2) {{ information.pharmacy_phone2 }}</strong></p>
+              <p><strong>3) {{ information.pharmacy_phone3 }}</strong></p>
+              <p><strong>4) {{ information.pharmacy_email1 }}</strong></p>
+              <p><strong>5) {{ information.pharmacy_email2 }}</strong></p>
+              <p><strong>6) {{ information.pharmacy_email3 }}</strong></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+	<!-- ================ Aboutus section end ================= -->
+</main>
+{% endblock %}
+	

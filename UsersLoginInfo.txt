@@ -1,0 +1,35 @@
+Danial Pharmacy Project All users login info
+
+--------------------
+
+Manager :
+username = DanialAfjehManager
+email = Danial@example.com
+pass = Manager12345678
+
+-------------------
+
+Customer #1 :
+first_name = dany
+last_name  afjehh
+email = dany@example.com
+username = danial82
+pass = Hoss2345678901
+
+-------------------
+
+Customer #2
+first_name = Reza
+last_name = moniri
+email = reza@example.com
+username = reza23
+pass = Hoss2345678902
+
+--------------------
+
+Admin :
+first_name = DanialAd
+last_name = Afjeh4
+email = danialadmin@yahoo.com
+username = danyy_admin
+pass = Admin12345678

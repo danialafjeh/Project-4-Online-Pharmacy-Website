@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+{% load my_filters %}
+
+{% block content %}
+<main>
+    <!-- ================ start banner area ================= -->
+    <section class="blog-banner-area" id="contact">
+        <div class="container h-100">
+            <div class="blog-banner">
+                <div class="text-center">
+                    <h1>سبد خرید شما</h1>
+                    <nav aria-label="breadcrumb" class="banner-breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><strong>محصولاتی که به سبد خرید خود اضافه کرده اید را اینجا می توانید مشاهده نمایید</strong>
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ================ end banner area ================= -->
+
+    <!--================Start Shopping Cart Area =================-->
+    <section class="cart_area">
+        <div class="container">
+            <div class="cart_inner">
+                <div class="table-responsive">
+                    <table class="table" style="border-collapse: collapse;">
+                        <thead>
+                            <tr style="border-bottom: 4px solid #007bff;">
+                                <th scope="col"><strong>محصول</strong></th>
+                                <th scope="col"><strong>قیمت واحد</strong></th>
+                                <th scope="col"><strong>تعداد</strong></th>
+                                <th scope="col"><strong>حذف</strong></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for prod in products %}
+                            <tr style="border-bottom: 3px solid #007bff;">
+                                <td>
+                                    <div class="media">
+                                        <div class="d-flex">
+                                            <img src="{{ prod.picture.url }}" alt="">
+                                        </div>
+                                        <div class="media-body">
+                                            <p><strong>{{ prod.name }}</strong></p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    {% if prod.is_sale %}
+                                    <h5><strong>{{ prod.sale_price|intcomma }}T</strong></h5>
+                                    {% else %}
+                                    <h5><strong>{{ prod.price|intcomma }}T</strong></h5>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% for key,value in quantities.items %}
+                                    {% if key == prod.id|slugify %}
+                                    <strong>x {{ value }}</strong>
+                                    {% endif %}
+                                    {% endfor %}
+                                </td>
+                                <td>
+                                    <form method="POST" action="{% url 'cart_delete' %}">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="product_id" value="{{ prod.id }}">
+                                        <button class="btn btn-primary" type="submit"><i class="fa fa-times"></i></button>
+                                    </form>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            <tr class="bottom_button">
+                                <td>
+                                </td>
+                                <td>
+                                </td>
+                                <td>
+                                  <h4><strong>{{ total_price|intcomma }} T</strong></h4>
+                                </td>
+                                <td>
+                                  <h4><strong>مجموع</strong></h4>
+                                </td>
+                            </tr>
+                            <tr class="out_button_area">
+                                <td class="d-none-l">
+                                </td>
+                                <td>
+                                </td>
+                                <td>
+                                </td>
+                                <td>
+                                    <div class="checkout_btn_inner d-flex align-items-center" dir="rtl">
+                                        {% if products %}
+                                        <a class="primary-btn ml-2" href="{% url 'cart_finalcheck' %}"><strong>تایید نهایی</strong></a>
+                                        <a class="gray_btn" href="{% url 'home' %}"><strong>ادامه خرید از داروخانه</strong></a>
+                                        {% else %}
+                                        <h5 class="text-danger"><strong>سبد خرید شما خالی است</strong></h5>
+                                        <hr>
+                                        <a class="gray_btn" href="{% url 'home' %}"><strong>ادامه خرید از داروخانه</strong></a>
+                                        {% endif %}
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================End Shopping Cart Area =================-->
+
+</main>
+{% endblock %}

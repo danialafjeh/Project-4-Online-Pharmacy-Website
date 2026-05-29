@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{% load my_filters %}
+
+{% block content %}
+<main>
+    <!-- ================ start banner area ================= -->
+    <section class="blog-banner-area" id="contact">
+        <div class="container h-100">
+            <div class="blog-banner">
+                <div class="text-center">
+                    <h1>جزئیات محصول</h1>
+                    <nav aria-label="breadcrumb" class="banner-breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><strong>{{ product.name }}</strong>
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ================ end banner area ================= -->
+
+    <!--================ Start product details Area =================-->
+    <div class="product_image_area" dir="rtl">
+        <div class="container">
+            <div class="row s_product_inner">
+                <div class="col-lg-6">
+                    <div class="btn btn-primary">
+                        <div class="single-prd-item">
+                            <img class="img-fluid" src="{{ product.picture.url }}" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5 offset-lg-1 text-right">
+                    <div class="s_product_text">
+                        <h3><strong>{{ product.name }}</strong></h3>
+                        {% if product.is_sale %}
+                        <h2><strong>قیمت : <s>{{ product.price|intcomma }}T</s></strong></h2>
+                        <h2><strong>با تخفیف : {{ product.sale_price|intcomma }}T</strong></h2>
+                        {% else %}
+                        <h2><strong>قیمت : {{ product.price|intcomma }}T</strong></h2>
+                        {% endif %}
+                        <ul class="list">
+                            <li><span><strong>در دسته بندی </strong></span><strong>{{ product.category.name }}</strong>
+                            </li>
+                            <li><span><strong>برند </strong></span><strong>{{ product.brand.name }}</strong></li>
+                        </ul>
+                        <hr style="border: none; height: 2px; background-color: blue;">
+                        <div class="product_count">
+                            <form method="POST" action="{% url 'cart_add' %}">
+                                {% csrf_token %}
+                                <input type="hidden" name="product_id" value="{{ product.id }}">
+                                <h5><strong>تعداد :</strong></h5>
+                                <div class="input-group mb-3" style="max-width: 100px;">
+                                    <input type="text" name="product_qty" class="form-control text-center border-primary" value="1" min="1">
+                                </div>
+                                <button type="submit" class="button primary-btn" style="width:160%; padding:12px 0; background-color:#007bff; color:#ffffff; border:none; border-radius:25px; font-size:16px; font-weight:bold;"><i class="fa fa-shopping-cart"></i> افزودن به سبد خرید</button>
+                                <br><br><br>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--================End Product details Area =================-->
+
+    <!--================ Start Product Description Area =================-->
+    <section class="product_description_area">
+        <div class="container">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+                        aria-selected="true"><strong>درباره برند</strong></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" id="review-tab" data-toggle="tab" href="#review" role="tab"
+                        aria-controls="review" aria-selected="false"><strong>درباره محصول</strong></a>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <p class="text-right"><strong>{{ product.brand.description }}</strong></p>
+                </div>
+                <div class="tab-pane fade show active" id="review" role="tabpanel" aria-labelledby="review-tab">
+                    <p class="text-right"><strong>{{ product.description }}</strong></p>
+                    <p class="text-right"><strong>{{ product.extra_info }}</strong></p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!--================End Product Description Area =================-->
+
+    <!--================ Start other Product area =================-->
+    <section class="related-product-area section-margin--small mt-0" dir="rtl">
+        <div class="container text-right">
+            <div class="section-intro pb-60px">
+                <p><strong>از دست ندهید</strong></p>
+                <h2><span class="section-intro__style"><strong>سایر محصولات</strong></span></h2>
+            </div>
+            <div class="row mt-30">
+                {% for prod in suggested_prods %}
+                <div class="col-sm-6 col-xl-3 mb-4 mb-xl-5">
+                    <div class="single-search-product-wrapper">
+                        <div class="single-search-product d-flex">
+                            <a href="{% url 'prod_details' prod.id %}"><img src="{{ prod.picture.url }}" alt=""></a>
+                            <div class="desc">
+                                <a href="{% url 'prod_details' prod.id %}" class="title"><strong>{{ prod.name }}</strong></a>
+                                {% if prod.is_sale %}
+                                <div class="price"><strong>{{ prod.sale_price|intcomma }}T</strong></div>
+                                {% else %}
+                                <div class="price"><strong>{{ prod.price|intcomma }}T</strong></div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <!--================ end other Product area =================-->
+
+</main>
+{% endblock %}

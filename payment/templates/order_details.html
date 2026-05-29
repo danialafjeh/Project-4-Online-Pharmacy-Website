@@ -1,0 +1,203 @@
+{% extends 'base.html' %}
+{% load my_filters %}
+{% load static %}
+
+{% block content %}
+<main>
+    <!-- ================ start banner area ================= -->
+    <section class="blog-banner-area" id="contact">
+        <div class="container h-100">
+            <div class="blog-banner">
+                <div class="text-center">
+                    <h1>حساب کاربری - جزئیات سفارش #{{ order.id }}</h1>
+                    <nav aria-label="breadcrumb" class="banner-breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><strong>به صفحه حساب کاربری خود خوش آمدید</strong></li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ================ end banner area ================= -->
+
+    <!--================ Customer's profile tools start =================-->
+    {% if not user.is_staff %}
+    <section class="blog_categorie_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-lg-4 mb-4 mb-lg-0">
+                    <div class="categories_post">
+                        <a href="{% url 'orders_tracking' %}">
+                            <img class="card-img rounded-0" src="{% static 'img/profile.jpg' %}" alt="post">
+                            <div class="categories_details">
+                                <div class="categories_text">
+                                    <h5><strong>پیگیری سفارشات من</strong></h5>
+                                    <div class="border_line"></div>
+                                    <p><strong>مشاهده جزئیات تمام سفارشات ثبت شده</strong></p>
+                                    <p class="text-success"><strong>| شما اینجا هستید |</strong></p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-4 mb-4 mb-lg-0">
+                    <div class="categories_post">
+                        <a href="{% url 'show_deliveryinfo' %}">
+                            <img class="card-img rounded-0" src="{% static 'img/profile.jpg' %}" alt="post">
+                            <div class="categories_details">
+                                <div class="categories_text">
+                                    <h5><strong>مشخصات ارسال سفارش</strong></h5>
+                                    <div class="border_line"></div>
+                                    <p><strong>مشاهده / ویرایش مشخصات ارسال سفارش مانند آدرس و غیره</strong></p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-4 mb-4 mb-lg-0">
+                    <div class="categories_post">
+                        <a href="{% url 'acc_info' %}">
+                            <img class="card-img rounded-0" src="{% static 'img/profile.jpg' %}" alt="post">
+                            <div class="categories_details">
+                                <div class="categories_text">
+                                    <h5><strong>اطلاعات حساب من</strong></h5>
+                                    <div class="border_line"></div>
+                                    <p><strong>مشاهده / ویرایش اطلاعات حساب کاربری</strong></p>
+                                    <br>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================ Customer's profile tools end =================-->
+    {% else %}
+    <!--================ Admin's profile tools start =================-->
+    <section class="blog_categorie_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-lg-8 mb-4 mb-lg-0">
+                    <div class="categories_post">
+                        <a href="{% url 'admin:index' %}">
+                            <img class="card-img rounded-0" src="{% static 'img/profilelarger.jpeg' %}" alt="post">
+                            <div class="categories_details">
+                                <div class="categories_text">
+                                    <h5><strong>ورود به پنل مدیریت داروخانه</strong></h5>
+                                    <div class="border_line"></div>
+                                    <p><strong>مشاهده / ویرایش اطلاعات ذخیره شده در سیستم داروخانه طبق میزان سطح دسترسی</strong></p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-4 mb-4 mb-lg-0">
+                    <div class="categories_post">
+                        <a href="{% url 'acc_info' %}">
+                            <img class="card-img rounded-0" src="{% static 'img/profile.jpg' %}" alt="post">
+                            <div class="categories_details">
+                                <div class="categories_text">
+                                    <h5><strong>اطلاعات حساب من</strong></h5>
+                                    <div class="border_line"></div>
+                                    <p><strong>مشاهده / ویرایش اطلاعات حساب کاربری</strong></p>
+                                    <p class="text-success"><strong>| شما اینجا هستید |</strong></p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================ Admin's profile tools end =================-->
+    {% endif %}
+    <!--================ Order details area start =================-->
+    <section class="order_details section-margin--small">
+        <div class="container text-right">
+            <div class="order_details_table">
+                <h2><strong>سفارش #{{ order.id }}</strong></h2>
+                <div class="table-responsive">
+                    <table class="table text-right">
+                        <thead>
+                            <tr>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                                <th scope="col"><strong>{{ order.full_name }}</strong></th>
+                                <th scope="col"><strong>به نام</strong></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row"></th>
+                                <td></td>
+                                <td><strong>{{ order.phone }}</strong></td>
+                                <td><strong>شماره تماس</strong></td>
+                            </tr>
+                            <tr>
+                                <th scope="row"></th>
+                                <td></td>
+                                <td><strong>{{ order.email }}</strong></td>
+                                <td><strong>ایمیل</strong></td>
+                            </tr>
+                            <tr>
+                                <th scope="row"></th>
+                                <td></td>
+                                <td><strong>{{ order.delivery_address }}</strong></td>
+                                <td><strong>ارسال به آدرس</strong></td>
+                            </tr>
+                            <tr>
+                                <th scope="row"></th>
+                                <td></td>
+                                <td><strong>{{ order.date_ordered }}</strong></td>
+                                <td><strong>تاریخ ثبت</strong></td>
+                            </tr>
+                            <tr>
+                                <th scope="row"></th>
+                                <td></td>
+                                <td><strong>{{ order.last_update }}</strong></td>
+                                <td><strong>تاریخ آخرین ویرایش</strong></td>
+                            </tr>
+                            <tr>
+                                <th scope="row"></th>
+                                <td></td>
+                                <td><strong>{{ order.get_status_display }}</strong></td>
+                                <td><strong>وضعیت</strong></td>
+                            </tr>
+                             <tr>
+                                <th scope="row"></th>
+                                <td></td>
+                                <td><strong>{{ order.amount_paid|intcomma }}T</strong></td>
+                                <td><strong>مبلغ کل</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <hr style="border: none; height: 3px; background-color: blue;">
+                    <h2><strong>محصولات داخل سفارش</strong></h2>
+                    <table class="table text-right">
+                        <thead>
+                            <tr>
+                                <th scope="col"></th>
+                                <th scope="col"><strong>تعداد</strong></th>
+                                <th scope="col"><strong>قیمت واحد</strong></th>
+                                <th scope="col"><strong>نام محصول</strong></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in order_items %}
+                            <tr>
+                                <td></td>
+                                <td><strong>{{ item.quantity }}</strong></td>
+                                <td><strong>{{ item.price|intcomma }}T</strong></td>
+                                <td><strong>{{ item.products.name }}</strong></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}

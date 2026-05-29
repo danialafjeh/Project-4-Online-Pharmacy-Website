@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load my_filters %}
+
+{% block content %}
+<main class="site-main">
+    <!--================ Hero banner start =================-->
+    <section class="hero-banner">
+      <div class="container">
+        <div class="row no-gutters align-items-center pt-60px">
+          <div class="col-5 d-none d-sm-block">
+            <div class="hero-banner__img">
+              <img class="img-fluid" src='{% static "img/home/MainHome.png" %}' alt="">
+            </div>
+          </div>
+          <div class="col-sm-7 col-lg-6 offset-lg-1 pl-4 pl-md-5 pl-lg-0">
+            <div class="hero-banner__content">
+              <h1 class="text-right"> خوش آمدید</h1>
+              <p class="text-right"><strong>داروخانه دانیال با هدف تأمین نیازهای دارویی و بهداشتی جامعه و ارائه محصولات اصیل و باکیفیت تأسیس شده است. این داروخانه با فراهم‌آوری مجموعه‌ای کامل از داروها، مکمل‌های غذایی، محصولات بهداشتی و مراقبتی، تلاش می‌کند پاسخگوی نیازهای متنوع مراجعین باشد. تمامی محصولات ارائه‌شده در داروخانه دانیال از منابع معتبر تهیه شده و مطابق با استانداردهای لازم عرضه می‌گردند. ما مفتخریم که با ارائه خدمات منظم و دسترسی آسان به محصولات دارویی، همراهی قابل اعتماد برای حفظ سلامت شما باشیم</strong></p>
+              <a class="button button-hero" href="{% url 'all_products' %}"><strong>مشاهده تمامی محصولات</strong></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--================ Hero banner end =================-->
+
+    <!--================ Hero Carousel start =================-->
+    <section class="section-margin mt-0">
+      <div class="owl-carousel owl-theme hero-carousel">
+        <div class="hero-carousel__slide">
+          <img src='{% static "img/home/Doctor2.png" %}' alt="" class="img-fluid">
+          <a href="{% url 'aboutus' %}" class="hero-carousel__slideOverlay">
+            <h3>درباره دکتر داروخانه بیشتر بدانید</h3>
+          </a>
+        </div>
+        <div class="hero-carousel__slide">
+          <img src='{% static "img/home/Category.jpg" %}' alt="" class="img-fluid">
+          <a href="{% url 'category_page' %}" class="hero-carousel__slideOverlay">
+            <h3>محصولات در دسته بندی های مختلف</h3>
+          </a>
+        </div>
+        <div class="hero-carousel__slide">
+          <img src='{% static "img/home/Brand3.jpg" %}' alt="" class="img-fluid">
+          <a href="{% url 'brands_page' %}" class="hero-carousel__slideOverlay">
+            <h3>برند های برتر و متنوع</h3>
+          </a>
+        </div>
+      </div>
+    </section>
+    <!--================ Hero Carousel end =================-->
+
+    <!-- ================ Off sale product section start ================= -->  
+    <section class="section-margin calc-60px">
+      <div class="container">
+        <div class="section-intro pb-60px">
+          <p class="text-right"><strong>محصولات در تخفیف را از دست ندهید</strong></p>
+          <h2 class="text-right"><span class="section-intro__style">تخفیفات فعال داروخانه</span></h2>
+        </div>
+        <div class="row">
+          {% for prod in sale_prods %}
+          <div class="col-md-7 col-lg-5 col-xl-3">
+            <div class="card text-center card-product">
+              <div class="card-product__img btn btn-primary">
+                <img class="card-img" src='{{ prod.picture.url }}' alt="">
+                <ul class="card-product__imgOverlay">
+                  <li><a href="{% url 'prod_details' prod.id %}" class="btn btn-primary"><i class="ti-shopping-cart"></i> <strong>مشاهده</strong></a></li>
+                </ul>
+              </div>
+              <div class="card-body">
+                <p><strong>{{ prod.category.name }}</strong></p>
+                <p><strong>{{ prod.brand }}</strong></p>
+                <h4 class="card-product__title"><a href="{% url 'prod_details' prod.id %}"><strong>{{ prod.name }}</strong></a></h4>
+                <p class="card-product__price"><strong><s>{{ prod.price|intcomma }} T</s> : قیمت</strong></p>
+                <p class="card-product__price text-primary"><strong>{{ prod.sale_price|intcomma }} T : با تخفیف</strong></p>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+    <!-- ================ Off sale product section end ================= -->  
+
+    <!-- ================ offer section start ================= --> 
+    <section class="offer" id="parallax-1" data-anchor-target="#parallax-1" data-300-top="background-position: 20px 30px" data-top-bottom="background-position: 0 20px">
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-5">
+            <div class="offer__content text-center">
+              <h3><strong>تحویل سفارشات شما در سریع ترین زمان ممکن</strong></h3>
+              <h4>انواع داروها و محصولات داروخانه</h4>
+              <p><strong>با خیال راحت سفارش خود را ثبت کنید</strong></p>
+              <a class="button button--active mt-3 mt-xl-4" href="{% url 'all_products' %}"><strong>همین حالا خرید کنید</strong></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ================ offer section end ================= --> 
+
+    <!-- ================ Subscribe section start ================= --> 
+    <section class="subscribe-position">
+      <div class="container">
+        <div class="subscribe text-center">
+          <h3 class="subscribe__title"><strong>به صورت تمام وقت و شبانه روزی</strong></h3>
+          <p><strong>همراه با بهترین و سریع ترین پشتیبانی برای مشتریان</strong></p> 
+        </div>
+      </div>
+    </section>
+    <!-- ================ Subscribe section end ================= --> 
+</main>
+{% endblock %}

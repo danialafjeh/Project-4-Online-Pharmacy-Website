@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load my_filters %}
+
+{% block content %}
+<main>
+    <!-- ================ start banner area ================= -->
+    <section class="blog-banner-area" id="contact">
+        <div class="container h-100">
+            <div class="blog-banner">
+                <div class="text-center">
+                    <h1>ورود</h1>
+                    <nav aria-label="breadcrumb" class="banner-breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><strong>وارد حساب کاربری خود شوید</strong>
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ================ end banner area ================= -->
+
+    <!--================  Login main page start =================-->
+	<section class="login_box_area section-margin">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="login_box_img">
+						<div class="hover">
+							<h4><strong>ورود ویژه مشتریان</strong></h4>
+                            <p>برای ورود مشتریان و کاربران عمومی داروخانه</p>
+							<a class="button button-account" href="{% url 'login_customer' %}"><strong>ورود</strong></a>
+                            <br><br>
+                            <hr style="border: none; height: 2px; background-color: white; width: 60%;">
+                            <br>
+                            <h4><strong>ورود ویژه مدیران</strong></h4>
+                            <p>فقط برای ورود ادمین ها و کاربران خاص سیستم</p>
+							<a class="button button-account" href="{% url 'login_admin' %}"><strong>ورود</strong></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--================ Login main page end =================-->
+
+</main>
+{% endblock %}

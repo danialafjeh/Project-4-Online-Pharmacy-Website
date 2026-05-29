@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load my_filters %}
+
+{% block content %}
+<main>
+    <!-- ================ start banner area ================= -->
+    <section class="blog-banner-area" id="contact">
+        <div class="container h-100">
+            <div class="blog-banner">
+                <div class="text-center">
+                    <h1>دسته بندی ها</h1>
+                    <nav aria-label="breadcrumb" class="banner-breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><strong>محصولات را در دسته بندی های گوناگون جستجو و مشاهده نمایید</strong>
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ================ end banner area ================= -->
+
+    <!-- ================ category section start ================= -->
+    <section class="section-margin--small mb-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-3 col-lg-4 col-md-5">
+                    <div class="sidebar-categories">
+                        <div class="head text-center"><strong>دسته بندی ها</strong></div>
+                        <ul class="main-categories">
+                            <li class="common-filter">
+                                <form action="#">
+                                    <ul>
+                                        {% for cat in categories %}
+                                        <li class="filter-list text-right"><a class="text-secondary" href="{% url 'category_selection' cat.name %}"><strong>{{ cat.name }}</strong></a></li>
+                                        {% endfor %}
+                                    </ul>
+                                </form>
+                                <hr style="border: none; height: 2px; background-color: blue;">
+                                <p class="text-right"><strong>انتخاب : مکمل های غذایی و تخصصی</strong></p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-xl-9 col-lg-8 col-md-7">
+                    <!-- Start category products -->
+                    <section class="lattest-product-area pb-40 category-list">
+                        <div class="row">
+                            {% for prod in default_products %}
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card text-center card-product">
+                                    <div class="card-product__img btn btn-primary">
+                                        <img class="card-img" src="{{ prod.picture.url }}" alt="">
+                                        <ul class="card-product__imgOverlay">
+                                            <li><a href="{% url 'prod_details' prod.id %}" class="btn btn-primary"><i class="ti-shopping-cart"></i><strong>مشاهده</strong></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="card-body">
+                                        <p><strong>{{ prod.category.name }}</strong></p>
+                                        <p><strong>{{ prod.brand }}</strong></p>
+                                        <h4 class="card-product__title"><a href="{% url 'prod_details' prod.id %}"><strong>{{ prod.name }}</strong></a></h4>
+                                        {% if prod.is_sale %}
+                                        <p class="card-product__price"><strong><s>{{ prod.price|intcomma }} T</s> : قیمت</strong></p>
+                                        <p class="card-product__price text-primary"><strong>{{ prod.sale_price|intcomma }} T : با تخفیف</strong></p>
+                                        {% else %}
+                                        <p class="card-product__price"><strong>{{ prod.price|intcomma }} T : قیمت</strong></p>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </section>
+                    <!-- End category products -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ================ category section end ================= -->
+
+</main>
+{% endblock %}

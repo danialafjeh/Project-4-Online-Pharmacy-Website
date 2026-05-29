@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load my_filters %}
+
+{% block content %}
+<main>
+    <!-- ================ start banner area ================= -->
+    <section class="blog-banner-area" id="contact">
+        <div class="container h-100">
+            <div class="blog-banner">
+                <div class="text-center">
+                    <h1>جستجو</h1>
+                    <nav aria-label="breadcrumb" class="banner-breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><strong>دنبال محصول مورد نظرت می گردی ؟</strong>
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ================ end banner area ================= -->
+    <section class="section-margin calc-60px">
+      <div class="container">
+        <div class="subscribe text-center">
+          <h3 class="subscribe__title">محصولی که دنبالشی رو اینجا جستجو کن</h3>
+          <p>جستجو در بین تمامی محصولات ثبت شده در سیستم داروخانه انجام می شود</p>
+          <p>نتیجه جستجوی شما در پایین همین صفحه نمایش داده می شود</p>
+            <form action="{% url 'search_products' %}" method="POST" class="subscribe-form form-inline mt-5 pt-1">
+              {% csrf_token %}
+              <div class="form-group ml-sm-auto">
+                <input class="form-control mb-1 border-dark text-right" type="text" name="searched" placeholder="نام محصول مورد نظر را وارد نمایید">
+              </div>
+              <button class="button button-subscribe mr-auto mb-1" type="submit" onclick="event.stopImmediatePropagation();"><strong>جستجو</strong></button>
+            </form>
+        </div>
+      </div>
+    </section>
+    <!-- ================ َActive sales section start ================= -->
+    <section class="section-margin calc-60px">
+        <div class="container">
+            <div class="row">
+                {% for prod in searched %}
+                <div class="col-md-7 col-lg-5 col-xl-3">
+                    <div class="card text-center card-product">
+                        <div class="card-product__img btn btn-primary">
+                            <img class="card-img" src='{{ prod.picture.url }}' alt="">
+                            <ul class="card-product__imgOverlay">
+                                <li><a href="{% url 'prod_details' prod.id %}" class="btn btn-primary"><i class="ti-shopping-cart"></i><strong>مشاهده</strong></a></li>
+                            </ul>
+                        </div>
+                        <div class="card-body">
+                            <p><strong>{{ prod.category.name }}</strong></p>
+                            <p><strong>{{ prod.brand }}</strong></p>
+                            <h4 class="card-product__title"><a href="{% url 'prod_details' prod.id %}"><strong>{{ prod.name }}</strong></a></h4>
+                            {% if prod.is_sale %}
+                            <p class="card-product__price"><strong><s>{{ prod.price|intcomma }} T</s> : قیمت</strong></p>
+                            <p class="card-product__price text-primary"><strong>{{ prod.sale_price|intcomma }} T : با تخفیف</strong></p>
+                            {% else %}
+                            <p class="card-product__price"><strong>{{ prod.price|intcomma }} T : قیمت</strong></p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}

@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% load my_filters %}
+
+{% block content %}
+<main>
+    <!-- ================ start banner area ================= -->
+    <section class="blog-banner-area" id="contact">
+        <div class="container h-100">
+            <div class="blog-banner">
+                <div class="text-center">
+                    <h1>سبد خرید شما - تایید نهایی سفارش</h1>
+                    <nav aria-label="breadcrumb" class="banner-breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><strong>محتویات سفارش و مشخصات ارسال خود را با دقت بررسی کنید</strong>
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ================ end banner area ================= -->
+
+    <!--================Start Cart Checkout Area =================-->
+    <section class="checkout_area section-margin--small">
+        <div class="container">
+            <div class="billing_details">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <h3 class="text-right"><strong>مشخصات ارسال سفارش</strong></h3>
+                        <hr style="border: none; height: 3px; background-color: blue;">
+                        <table class="table text-right">
+                            <thead>
+                                <tr>
+                                    <th scope="col"></th>
+                                    <th scope="col"></th>
+                                    <th scope="col"><strong>{{ deliveryinfo.full_name }}</strong></th>
+                                    <th scope="col"><strong>به نام</strong></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row"></th>
+                                    <td></td>
+                                    <td><strong>{{ deliveryinfo.phone }}</strong></td>
+                                    <td><strong>شماره تماس</strong></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"></th>
+                                    <td></td>
+                                    <td><strong>{{ deliveryinfo.city }}</strong></td>
+                                    <td><strong>شهر</strong></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"></th>
+                                    <td></td>
+                                    <td><strong>{{ deliveryinfo.province }}</strong></td>
+                                    <td><strong>استان</strong></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"></th>
+                                    <td></td>
+                                    <td><strong>{{ deliveryinfo.zip_code }}</strong></td>
+                                    <td><strong>کد پستی</strong></td>
+                                </tr>
+                                 <tr>
+                                    <th scope="row"></th>
+                                    <td></td>
+                                    <td><strong>{{ deliveryinfo.address }}</strong></td>
+                                    <td><strong>آدرس</strong></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"></th>
+                                    <td></td>
+                                    <td><strong></td>
+                                    <td><a class="btn btn-primary" href="{% url 'profile_mainpage' %}"><strong>ویرایش</strong></a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="order_box">
+                            <h2 class="text-right"><strong>سفارش شما</strong></h2>
+                            <ul class="list">
+                                <li>
+                                    <a href="#">
+                                        <h4><strong>قیمت واحد</strong> <span><strong>محصولات</strong></span></h4>
+                                    </a>
+                                </li>
+                                {% for prod in products %}
+                                <li>
+                                    <a href="{% url 'prod_details' prod.id %}">
+                                        {% if prod.is_sale %}
+                                        <strong>{{ prod.sale_price|intcomma }}T</strong>
+                                        {% else %}
+                                        <strong>{{ prod.price|intcomma }}T</strong>
+                                        {% endif %}
+                                        <span class="last">
+                                            {% for key,value in quantities.items %}
+                                                {% if key == prod.id|slugify %}
+                                                   <strong>(x{{ value }})</strong>
+                                                {% endif %}
+                                            {% endfor %}
+                                            <strong>{{ prod.name }}</strong>
+                                        </span>
+                                    </a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                            <ul class="list list_2">
+                                <li>
+                                    <a href="#"><strong>{{ total_price|intcomma }}T</strong> <span><strong>مجموع قیمت</strong></span></a>
+                                </li>
+                            </ul>
+                            <div class="payment_item text-right">
+                                <hr style="border: none; height: 2px; background-color: blue;">
+                                <p><strong>پس از ثبت سفارش , از بخش "پیگیری سفارشات من" در صفحه حساب کاربری خود اقدام به پرداخت مبلغ نمایید تا روند ارسال سفارش به شما آغاز و در سریع ترین زمان ممکن به دست شما برسد. هزینه  ارسال رایگان است</strong></p>
+                            </div>
+                            <div class="text-center">
+                                <form method="POST" action="{% url 'create_order' %}">
+                                {% csrf_token %}
+                                <input type="hidden" name="user_delivery_id" value="{{ deliveryinfo.user.id }}">
+                                <button type="submit" class="button button-paypal"><strong>ثبت سفارش</strong></button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================End [Cart Checkout Area =================-->
+
+</main>
+{% endblock %}

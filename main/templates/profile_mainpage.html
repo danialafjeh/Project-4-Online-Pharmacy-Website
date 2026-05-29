@@ -1,0 +1,168 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<main>
+    <!-- ================ start banner area ================= -->
+    <section class="blog-banner-area" id="contact">
+        <div class="container h-100">
+            <div class="blog-banner">
+                <div class="text-center">
+                    <h1>حساب کاربری</h1>
+                    <nav aria-label="breadcrumb" class="banner-breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><strong>به صفحه حساب کاربری خود خوش آمدید</strong></li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ================ end banner area ================= -->
+
+    {% if not user.is_staff %}
+    <!--================ Customer's profile tools start =================-->
+    <section class="blog_categorie_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-lg-4 mb-4 mb-lg-0">
+                    <div class="categories_post">
+                        <a href="{% url 'orders_tracking' %}">
+                            <img class="card-img rounded-0" src="{% static 'img/profile.jpg' %}" alt="post">
+                            <div class="categories_details">
+                                <div class="categories_text">
+                                    <h5><strong>پیگیری سفارشات من</strong></h5>
+                                    <div class="border_line"></div>
+                                    <p><strong>مشاهده جزئیات تمام سفارشات ثبت شده</strong></p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-4 mb-4 mb-lg-0">
+                    <div class="categories_post">
+                        <a href="{% url 'show_deliveryinfo' %}">
+                            <img class="card-img rounded-0" src="{% static 'img/profile.jpg' %}" alt="post">
+                            <div class="categories_details">
+                                <div class="categories_text">
+                                    <h5><strong>مشخصات ارسال سفارش</strong></h5>
+                                    <div class="border_line"></div>
+                                    <p><strong>مشاهده / ویرایش مشخصات ارسال سفارش مانند آدرس و غیره</strong></p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-4 mb-4 mb-lg-0">
+                    <div class="categories_post">
+                        <a href="{% url 'acc_info' %}">
+                            <img class="card-img rounded-0" src="{% static 'img/profile.jpg' %}" alt="post">
+                            <div class="categories_details">
+                                <div class="categories_text">
+                                    <h5><strong>اطلاعات حساب من</strong></h5>
+                                    <div class="border_line"></div>
+                                    <p><strong>مشاهده / ویرایش اطلاعات حساب کاربری</strong></p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================ Customer's profile tools end =================-->
+
+    <!--================ Profile Content Area start =================-->
+    <section class="blog_area">
+        <div class="container">
+            <center>
+            <div class="row">
+                <div class="w-100">
+                  <div class="blog_right_sidebar border-dark">
+                      <aside class="single_sidebar_widget author_widget">
+                          <img class="author_img rounded-circle" src="{% static 'img/profileuser.jpg' %}" alt="">
+                          <h4><strong>{{ user.username }}</strong></h4>
+                          <br>
+                          <p><strong>سطح دسترسی : مشتری</strong></p>
+                          <div class="br" style="border: none; height: 3px; background-color: blue;"></div>
+                          <p><strong>شما می توانید در صورت بروز مشکل یا داشتن هر گونه سوال یا ابهام با پشتیبانی ارتباط برقرار کنید. جهت مشاهده راه های ارتباطی با پشتیبانی به صفحه "درباره ما" رجوع کنید</strong></p>
+                          <br><br>
+                      </aside>
+                  </div>
+                  <br><br>
+                </div>
+            </div>
+            </center>
+        </div>
+    </section>
+    <!--================ Profile Content Area end =================-->
+
+    {% else %}
+    <!--================ Admin's profile tools start =================-->
+    <section class="blog_categorie_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-lg-8 mb-4 mb-lg-0">
+                    <div class="categories_post">
+                        <a href="{% url 'admin:index' %}">
+                            <img class="card-img rounded-0" src="{% static 'img/profilelarger.jpeg' %}" alt="post">
+                            <div class="categories_details">
+                                <div class="categories_text">
+                                    <h5><strong>ورود به پنل مدیریت داروخانه</strong></h5>
+                                    <div class="border_line"></div>
+                                    <p><strong>مشاهده / ویرایش اطلاعات ذخیره شده در سیستم داروخانه طبق میزان سطح دسترسی</strong></p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-4 mb-4 mb-lg-0">
+                    <div class="categories_post">
+                        <a href="{% url 'acc_info' %}">
+                            <img class="card-img rounded-0" src="{% static 'img/profile.jpg' %}" alt="post">
+                            <div class="categories_details">
+                                <div class="categories_text">
+                                    <h5><strong>اطلاعات حساب من</strong></h5>
+                                    <div class="border_line"></div>
+                                    <p><strong>مشاهده / ویرایش اطلاعات حساب کاربری</strong></p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================ Admin's profile tools end =================-->
+
+    <!--================ Profile Content Area start =================-->
+    <section class="blog_area">
+        <div class="container">
+            <center>
+            <div class="row">
+                <div class="w-100">
+                  <div class="blog_right_sidebar border-dark">
+                      <aside class="single_sidebar_widget author_widget">
+                          <img class="author_img rounded-circle" src="{% static 'img/profileuser.jpg' %}" alt="">
+                          <h4><strong>{{ user.username }}</strong></h4>
+                          <br>
+                          {% if user.is_superuser %}
+                          <p><strong>سطح دسترسی : مدیر</strong></p>
+                          {% elif user.is_staff %}
+                          <p><strong>سطح دسترسی : ادمین</strong></p>
+                          {% endif %}
+                          <div class="br" style="border: none; height: 3px; background-color: blue;"></div>
+                          <p><strong>شما می توانید در صورت بروز مشکل یا داشتن هر گونه سوال یا ابهام با پشتیبانی ارتباط برقرار کنید. جهت مشاهده راه های ارتباطی با پشتیبانی به صفحه "درباره ما" رجوع کنید</strong></p>
+                          <br><br>
+                      </aside>
+                  </div>
+                  <br><br>
+                </div>
+            </div>
+            </center>
+        </div>
+    </section>
+    <!--================ Profile Content Area end =================-->
+    {% endif %}
+</main>
+{% endblock %}

@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load my_filters %}
+
+{% block content %}
+<main>
+    <!-- ================ start banner area ================= -->
+    <section class="blog-banner-area" id="contact">
+        <div class="container h-100">
+            <div class="blog-banner">
+                <div class="text-center">
+                    <h1>ثبت نام</h1>
+                    <nav aria-label="breadcrumb" class="banner-breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><strong>در چند قدم یک حساب کاربری جدید بسازید و عضو مشتریان ثابت ما شوید</strong>
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ================ end banner area ================= -->
+
+    <!--================ Signup Area start =================-->
+	<section class="login_box_area section-margin">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6">
+					<div class="login_box_img">
+						<div class="hover">
+							<h4><strong>قبلا در سایت ما ثبت نام کرده اید ؟</strong></h4>
+							<p>به راحتی می  توانید وارد حساب کاربری خود شوید</p>
+							<a class="button button-account" href="{% url 'login_mainpage' %}"><strong>همین الان وارد شوید</strong></a>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<div class="login_form_inner register_form_inner">
+						<h3>ساخت حساب کاربری</h3>
+						<form class="row login_form text-right" action="{% url 'signup_user' %}" method="POST">
+                            {% csrf_token %}
+                            {% for field in form %}
+							<div class="col-md-12 form-group">
+                                {{ field }}
+							</div>
+							{% endfor %}
+							<div class="col-md-12 form-group">
+								<button type="submit" class="button w-100"><strong>ثبت نام</strong></button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--================End Signup Area =================-->
+</main>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+
+    // جلوگیری از بازگشت اسکرول
+    if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+    }
+
+    // حذف focus از همه input ها
+    document.querySelectorAll("input").forEach(function(el){
+        el.blur();
+    });
+
+    // انتقال focus به body
+    document.body.setAttribute("tabindex", "-1");
+    document.body.focus();
+
+    // بردن صفحه بالا
+    window.scrollTo(0, 0);
+
+});
+</script> 
+{% endblock %}
