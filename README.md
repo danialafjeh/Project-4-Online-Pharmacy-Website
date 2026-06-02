@@ -2,9 +2,11 @@
   
 # 💊 Online Pharmacy E-Commerce Website
 
-A modern and fully functional online pharmacy e-commerce platform developed using **Django MVT architecture** for the backend and a stylish responsive frontend built with **HTML, CSS, SCSS, and JavaScript**.
+A modern and fully functional online pharmacy e-commerce platform developed using **Django MVT architecture** for the backend and a stylish responsive frontend built with **HTML, CSS, SCSS, and JavaScript**. (Because my specialization is backend development, the UI is based on a Bootstrap template from templatemo.com to achieve a neat, responsive design.)
 
 The project focuses heavily on backend development, authentication systems, database management, and role-based access control while also providing a clean and modern user interface. so frontend is made with customized and ready made template.
+
+‼️ NOTE : This is a portfolio project to showing my abilities and it's not a real deployed project. so all users and database are also exactly available.
 
 ‼️ NOTE : All information saved in database are just for examples and completely fake.
 
@@ -47,6 +49,7 @@ Administrators have access to a powerful management panel with advanced permissi
 * 📦 Viewing and managing all registered orders
 * ✏️ Editing and deleting website data
 * 🔑 Access to the full Django administration panel
+* 💠 Admin dashboard is Django's admin panel but with fully customized looking 
 
 ## 💻 Technologies Used
 
