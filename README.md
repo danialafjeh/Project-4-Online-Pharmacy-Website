@@ -1,8 +1,8 @@
-# About Project
+# 💻 About Project
 
 [Complete guide | Run This Project on your computer](https://github.com/danialafjeh/Run-My-Projects-Locally)
   
-# 💊 Online Pharmacy E-Commerce Website
+# Online Pharmacy E-Commerce Website
 
 A modern and fully functional online pharmacy e-commerce platform developed using **Django MVT architecture** for the backend and a stylish responsive frontend built with **HTML, CSS, SCSS, and JavaScript**. (Because my specialization is backend development, the UI is based on a Bootstrap template from templatemo.com to achieve a neat, responsive design.)
 
@@ -14,55 +14,55 @@ The project focuses heavily on backend development, authentication systems, data
 
 ‼️ NOTE : The language of the website is completely in Persian.
 
-## 🚀 Features
+## Features
 
-* 🔍 Advanced product search functionality
-* 🛒 Complete online shopping experience
-* 📦 Product categories and brand filtering system
-* 🧾 Browse all products with dynamic filters
-* 💊 Pharmacy products organized by categories and brands
-* 👨‍⚕️ Pharmacy and doctor information stored dynamically in the database
-* 📄 Dedicated About Us and Doctor Information pages
-* 🔐 Secure authentication and authorization system
-* 👤 User registration, login, and logout system
-* ✨ Modern and responsive authentication forms
-* 🧑‍💼 Separate authentication system for administrators and customers
-* 🛡️ Role-based access levels and permissions
+* Advanced product search functionality
+* Complete online shopping experience
+* Product categories and brand filtering system
+* Browse all products with dynamic filters
+* Pharmacy products organized by categories and brands
+* Pharmacy and doctor information stored dynamically in the database
+* Dedicated About Us and Doctor Information pages
+* Secure authentication and authorization system
+* User registration, login, and logout system
+* Modern and responsive authentication forms
+* Separate authentication system for administrators and customers
+* Role-based access levels and permissions
 
-## 👤 Customer Dashboard Features
+## Customer Dashboard Features
 
 Customers have access to a dedicated and modern profile dashboard with features such as:
 
-* 📝 Viewing and editing account information
-* 📍 Managing shipping information, phone numbers, and addresses
-* 📦 Viewing and tracking registered orders
-* ⚙️ Clean and user-friendly profile interface
+* Viewing and editing account information
+* Managing shipping information, phone numbers, and addresses
+* Viewing and tracking registered orders
+* Clean and user-friendly profile interface
 
 ---
 
-## 🛠️ Admin Dashboard Features
+## Admin Dashboard Features
 
 Administrators have access to a powerful management panel with advanced permissions, including:
 
-* 👥 Managing all users and customer accounts
-* 💊 Managing products and pharmacy information
-* 👨‍⚕️ Managing doctor information
-* 🏷️ Managing brands and product categories
-* 📦 Viewing and managing all registered orders
-* ✏️ Editing and deleting website data
-* 🔑 Access to the full Django administration panel
-* 💠 Admin dashboard is Django's admin panel but with fully customized looking 
+* Managing all users and customer accounts
+* Managing products and pharmacy information
+* Managing doctor information
+* Managing brands and product categories
+* Viewing and managing all registered orders
+* Editing and deleting website data
+* Access to the full Django administration panel
+* Admin dashboard is Django's admin panel but with fully customized looking 
 
-## 💻 Technologies Used
+## Technologies Used
 
-* 🐍 Django (MVT Architecture)
-* 🎨 HTML5
-* 🎨 CSS3
-* 🎨 SCSS
-* ⚡ JavaScript
-* 🗄️ SQLite / Django ORM
+* Django (MVT Architecture)
+* HTML5
+* CSS3
+* SCSS
+* JavaScript
+* SQLite / Django ORM
 
-## 🎯 Project Goal
+## Project Purpose
 
 The goal of this project was to build a complete and scalable online pharmacy platform with secure authentication, professional dashboard systems, advanced admin management features, and a modern shopping experience using Django.
 
