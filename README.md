@@ -2,7 +2,7 @@
 
 [Complete guide | Run This Project on your computer](https://github.com/danialafjeh/Run-My-Projects-Locally)
   
-# Online Pharmacy E-Commerce Website
+# Pharmacy E-Commerce Website
 
 A modern and fully functional online pharmacy e-commerce platform developed using **Django MVT architecture** for the backend and a stylish responsive frontend built with **HTML, CSS, SCSS, and JavaScript**. (Because my specialization is backend development, the UI is based on a Bootstrap template from templatemo.com to achieve a neat, responsive design.)
 
